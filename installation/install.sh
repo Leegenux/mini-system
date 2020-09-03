@@ -14,19 +14,22 @@ part_device () {
 	read -p "Do you want to rebuild the partition table ? (Erases all the existing partitions and data) [Y/N] " -e CONFIRM 
 	if [ x$CONFIRM == xY ] ; then 
 		sudo sfdisk ${DEVICE} < disk.layout
-	fi
 
-	if [ x$CONFIRM != xY ] ; then 
 		read -p "Do you want to format the partition to VFAT format ? (Erases all the data) [Y/N] " -e CONFIRM 
+		if [ x$CONFIRM == xY ] ; then 
+			sudo mkfs.vfat -F 32 ${DEVICE}1
+		else
+			exit 1
+		fi
+	else
+		exit 1
 	fi
 
-	if [ x$CONFIRM == xY ] ; then 
-		sudo mkfs.vfat -F 32 ${DEVICE}1
-	fi
 }
 
 
 install_files () {
+	sudo mkdir mount_point
 	sudo mount ${DEVICE}1 mount_point
 	sudo cp -rfv efi_part/* mount_point/
 	sudo cp -rfv boot_part/* mount_point/
@@ -49,6 +52,7 @@ install_files () {
 	"
 	echo "umounting ..."
 	sudo umount ${DEVICE}1
+	sudo rmdir mount_point
 	echo "done!"
 }
 
