@@ -2,8 +2,7 @@
 
 
 home=/home/leegenux
-#libPath=$home/testPath
-libPath=$home/initDir
+libPath=./initDir
 irreduntancyDB=""
 
 # Check if the path is valid
