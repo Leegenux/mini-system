@@ -32,5 +32,6 @@ fi
 # compress the initDir
 cd $initDir
 find . -print0 | cpio --null -ov --format=newc | xz -9 --check=crc32 --format=xz > $outcome
+cd -
 
 echo "The initramfs has already been created as $outcome"
