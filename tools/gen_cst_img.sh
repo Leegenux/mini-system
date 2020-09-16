@@ -3,7 +3,7 @@
 # Make sure the folder exists
 #initDir='/home/leegenux/initDir'
 
-outcome=./initramfs-mini-system.img
+outcome=$(./initramfs-mini-system.img)
 
 if [ $1 ] ; then
 	if [ -d $1 ] ; then
