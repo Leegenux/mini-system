@@ -1,9 +1,7 @@
 #!/bin/bash
 
-
-home=/home/leegenux
-#libPath=$home/testPath
-libPath=$home/initDir
+#libPath=$home/initDir
+libPath=$1
 irreduntancyDB=""
 
 # Check if the path is valid

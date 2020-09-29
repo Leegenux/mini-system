@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Make sure the folder exists
-HOME=/home/leegenux
-initDir=$HOME/initDir
 img_path=$(realpath $1)
+initDir=$(realpath $2)
 
 # Check $1
 if [ $1 ] ; then
